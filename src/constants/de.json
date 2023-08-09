@@ -1,0 +1,27 @@
+{
+  "headlines": {
+    "dataCompany": "Daten der Firma",
+    "dataUser": "Daten des Nutzers",
+    "conclusion": "Zusammenfassung"
+  },
+  "labelCompany": {
+    "companyName": "Firmenname",
+    "industry": "Branche"
+  },
+  "labelUser": {
+    "name": "Name",
+    "firstName": "Vorname",
+    "username": "Nutzername",
+    "password": "Passwort",
+    "repPassword": "Passwort wiederholen",
+    "email": "E-Mail"
+  },
+  "label": {
+    "continue": "Weiter",
+    "back": "Zurück",
+    "finishForm": "Formular abschließen"
+  },
+  "alerts": {
+    "companyNameInvalid": "Firmennamen unzulässig"
+  }
+}

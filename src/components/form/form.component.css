@@ -1,0 +1,25 @@
+.formCard {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5%;
+  background-color: var(--formCard);
+}
+
+.formPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between
+}
+
+.input {
+
+}
+
+.button {
+
+}
