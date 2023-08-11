@@ -4,32 +4,44 @@
   [ngModel]="user.name"
   (input)="onUserNameChangeHandler($event)"
   class="input"
+  [class.invalid]="isNameValid === false"
+  [class.valid]="isNameValid"
   [placeholder]="de.labelUser.name"/>
 <input
   [ngModel]="user.firstName"
   (input)="onUserFirstNameChangeHandler($event)"
   class="input"
+  [class.invalid]="isFirstNameValid === false"
+  [class.valid]="isFirstNameValid"
   [placeholder]="de.labelUser.firstName"/>
 <input
   [ngModel]="user.username"
   (input)="onUserUsernameChangeHandler($event)"
   class="input"
+  [class.invalid]="isUsernameValid === false"
+  [class.valid]="isUsernameValid"
   [placeholder]="de.labelUser.username"/>
 <input
   type="password"
   [ngModel]="user.password"
   (input)="onUserPasswordChangeHandler($event)"
   class="input"
+  [class.invalid]="isPasswordValid === false"
+  [class.valid]="isPasswordValid"
   [placeholder]="de.labelUser.password"/>
 <input
   type="password"
   [ngModel]="user.repPassword"
   (input)="onUserRepPasswordChangeHandler($event)"
   class="input"
+  [class.invalid]="isRepPasswordValid === false"
+  [class.valid]="isRepPasswordValid"
   [placeholder]="de.labelUser.repPassword"/>
 <input
   [ngModel]="user.email"
   (input)="onUserEmailChangeHandler($event)"
   class="input"
+  [class.invalid]="isEmailValid === false"
+  [class.valid]="isEmailValid"
   [placeholder]="de.labelUser.emailOptional"/>
 </div>

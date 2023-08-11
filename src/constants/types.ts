@@ -26,6 +26,10 @@ export type UserValidation = {
   "email": boolean
 }
 
+export type CompanyValidation = {
+  "name": boolean,
+}
+
 export type Language = {
   "headlines": {
     "dataCompany": string,

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import de from "./../../constants/de.json"
 import {Company, Industry, Language, User} from "../../constants/types";
+import {getCompanyValidation} from "../../constants/validationFunctions";
 
 @Component({
   selector: 'app-form',
@@ -29,6 +30,9 @@ export class FormComponent {
   }
 
   onContinueClickHandler() {
+    if (this.page === 0) {
+      // getCompanyValidation(this.company)
+    }
     this.page++
     if (this.page > 2) {
       this.company = this.emptyCompany
