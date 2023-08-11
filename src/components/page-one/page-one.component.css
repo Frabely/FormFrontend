@@ -1,0 +1,19 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.industry {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
+
+.marginBot {
+  margin-bottom: 5%;
+}
+
+.label {
+  font-weight: bold;
+}

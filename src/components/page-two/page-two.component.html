@@ -1,0 +1,35 @@
+<div class="mainContainer">
+<h1>{{de.headlines.dataUser}}</h1>
+<input
+  [ngModel]="user.name"
+  (input)="onUserNameChangeHandler($event)"
+  class="input"
+  [placeholder]="de.labelUser.name"/>
+<input
+  [ngModel]="user.firstName"
+  (input)="onUserFirstNameChangeHandler($event)"
+  class="input"
+  [placeholder]="de.labelUser.firstName"/>
+<input
+  [ngModel]="user.username"
+  (input)="onUserUsernameChangeHandler($event)"
+  class="input"
+  [placeholder]="de.labelUser.username"/>
+<input
+  type="password"
+  [ngModel]="user.password"
+  (input)="onUserPasswordChangeHandler($event)"
+  class="input"
+  [placeholder]="de.labelUser.password"/>
+<input
+  type="password"
+  [ngModel]="user.repPassword"
+  (input)="onUserRepPasswordChangeHandler($event)"
+  class="input"
+  [placeholder]="de.labelUser.repPassword"/>
+<input
+  [ngModel]="user.email"
+  (input)="onUserEmailChangeHandler($event)"
+  class="input"
+  [placeholder]="de.labelUser.emailOptional"/>
+</div>

@@ -1,75 +1,25 @@
 <div class="formCard">
   <div class="formPage" *ngIf="page == 0">
-    <h1>{{de.headlines.dataCompany}}</h1>
-    <input
-      [ngModel]="company.companyName"
-      (input)="onCompanyChange($event)"
-      class="input"
-      [placeholder]="de.labelCompany.companyName"/>
-    <label>{{de.labelCompany.industry}}</label>
-    <select [(ngModel)]="company.industry" (change)="onIndustryChange($event)">
-      <option>{{industryList[0].name}}</option>
-      <option *ngFor="let industry of industryList.slice(1); let i = index" [value]="i">
-        {{ industry.name }}
-      </option>
-    </select>
+    <app-page-one (onCompanyChanged)="onCompanyChanged($event)" [company]="company" [industryList]="industryList"/>
+    <div class="buttonContainer">
     <button
       (click)="onContinueClickHandler()"
       class="button">{{de.label.continue}}</button>
+    </div>
   </div>
   <div class="formPage" *ngIf="page == 1">
-    <h1>{{de.headlines.dataUser}}</h1>
-    <input
-      [ngModel]="user.name"
-      (input)="onUserNameChangeHandler($event)"
-      class="input"
-      [placeholder]="de.labelUser.name"/>
-    <input
-      [ngModel]="user.firstName"
-      (input)="onUserFirstNameChangeHandler($event)"
-      class="input"
-      [placeholder]="de.labelUser.firstName"/>
-    <input
-      [ngModel]="user.username"
-      (input)="onUserUsernameChangeHandler($event)"
-      class="input"
-      [placeholder]="de.labelUser.username"/>
-    <input
-      type="password"
-      [ngModel]="user.password"
-      (input)="onUserPasswordChangeHandler($event)"
-      class="input"
-      [placeholder]="de.labelUser.password"/>
-    <input
-      type="password"
-      [ngModel]="user.repPassword"
-      (input)="onUserRepPasswordChangeHandler($event)"
-      class="input"
-      [placeholder]="de.labelUser.repPassword"/>
-    <input
-      [ngModel]="user.email"
-      (input)="onUserEmailChangeHandler($event)"
-      class="input"
-      [placeholder]="de.labelUser.email"/>
+    <app-page-two (onUserChanged)="onUserChanged($event)" [user]="user"/>
     <div class="buttonContainer">
       <button
         (click)="onBackClickHandler()"
         class="button">{{de.label.back}}</button>
       <button
-      (click)="onContinueClickHandler()"
-      class="button">{{de.label.continue}}</button>
+        (click)="onContinueClickHandler()"
+        class="button">{{de.label.continue}}</button>
     </div>
   </div>
   <div class="formPage" *ngIf="page == 2">
-    <h1>{{de.headlines.conclusion}}</h1>
-    <h2>{{de.headlines.dataCompany}}</h2>
-    <label>{{company.companyName}}</label>
-    <label>{{company.industry}}</label>
-    <h2>{{de.headlines.dataUser}}</h2>
-    <label>{{user.name}}</label>
-    <label>{{user.firstName}}</label>
-    <label>{{user.username}}</label>
-    <label>{{user.email}}</label>
+    <app-page-three [user]="user" [company]="company"/>
     <div class="buttonContainer">
       <button
         (click)="onBackClickHandler()"

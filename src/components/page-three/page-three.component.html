@@ -1,0 +1,19 @@
+<div class="mainContainer">
+  <h1>{{de.headlines.conclusion}}</h1>
+  <h2>{{de.headlines.dataCompany}}</h2>
+  <app-finish-form-label [label]="de.labelCompany.companyName" [content]="company.companyName"/>
+  <app-finish-form-label [label]="de.labelCompany.industry" [content]="company.industry"/>
+  <h2>{{de.headlines.dataUser}}</h2>
+  <app-finish-form-label [label]="de.labelUser.name" [content]="user.name"/>
+  <app-finish-form-label [label]="de.labelUser.firstName" [content]="user.firstName"/>
+  <app-finish-form-label [label]="de.labelUser.username" [content]="user.username"/>
+  <app-finish-form-label [label]="de.labelUser.email" [content]="user.email"/>
+  <div class="marginBot">
+    <input type="checkbox">
+    <label>{{de.label.acceptTermsOfService}}</label>
+  </div>
+  <div class="marginBot">
+    <input type="checkbox">
+    <label>{{de.label.acceptTermsOfPrivacy}}</label>
+  </div>
+</div>

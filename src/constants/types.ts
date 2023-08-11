@@ -43,11 +43,14 @@ export type Language = {
     "password": string,
     "repPassword": string,
     "email": string,
+    "emailOptional": string,
   },
   "label": {
     "continue": string,
     "back": string,
     "finishForm": string,
+    "acceptTermsOfService": string,
+    "acceptTermsOfPrivacy": string
   },
   "alerts": {
     "companyNameInvalid": string,

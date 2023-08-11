@@ -14,12 +14,15 @@
     "username": "Nutzername",
     "password": "Passwort",
     "repPassword": "Passwort wiederholen",
+    "emailOptional": "E-Mail (optional)",
     "email": "E-Mail"
   },
   "label": {
     "continue": "Weiter",
     "back": "Zurück",
-    "finishForm": "Formular abschließen"
+    "finishForm": "Formular abschließen",
+    "acceptTermsOfService": "Einverständnis mit AGB",
+    "acceptTermsOfPrivacy": "Einverständnis mit Datenschutzerklärung"
   },
   "alerts": {
     "companyNameInvalid": "Firmennamen unzulässig"
