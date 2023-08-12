@@ -1,11 +1,13 @@
-import {Company, CompanyValidation, User, UserValidation} from "./types";
+import {Company, CompanyValidation, User, UserValidation} from "../constants/types";
 
 export const isValidName = (name: string): boolean => {
   return name !== '';
 }
 
 export const isValidPassword = (password: string) => {
-  return true
+  //min 8 figures, big and small letters included
+  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  return passwordPattern.test(password);
 }
 
 export const isValidUsername = (username: string) => {
@@ -13,7 +15,8 @@ export const isValidUsername = (username: string) => {
 }
 
 export const isValidEmail = (email: string) => {
-  return true
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailPattern.test(email);
 }
 export const getCompanyValidation = (company: Company): CompanyValidation => {
     return {name: isValidName(company.companyName)}

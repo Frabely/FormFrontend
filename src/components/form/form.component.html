@@ -1,6 +1,6 @@
 <div class="formCard">
   <div class="formPage" *ngIf="page == 0">
-    <app-page-one (onCompanyChanged)="onCompanyChanged($event)" [company]="company" [industryList]="industryList"/>
+    <app-page-one (onCompanyChanged)="onCompanyChanged($event)" [company]="company" [industryList]="industryList ? industryList : []"/>
     <div class="buttonContainer">
     <button
       (click)="onContinueClickHandler()"

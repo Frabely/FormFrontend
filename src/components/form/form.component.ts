@@ -1,19 +1,32 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import de from "./../../constants/de.json"
 import {Company, Industry, Language, User} from "../../constants/types";
-import {getCompanyValidation} from "../../constants/validationFunctions";
+import {getCompanyValidation} from "../../functions/validationFunctions";
+import {ApiService} from "../../services/api.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class FormComponent {
+export class FormComponent implements OnInit{
+
+  fetchedIndustryList$?: Observable<Industry[]>
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit() {
+    this.fetchedIndustryList$ = this.apiService.getIndustries()
+    this.fetchedIndustryList$.subscribe((list: Industry[]) => {
+      this.industryList = list
+    })
+  }
+
   de: Language = de
   page: number = 0
 
-  industryList: Industry[] = [{name: "test1"}, {name: "test2"}]
-  emptyCompany: Company = {companyName: "", industry: this.industryList[0].name}
+  industryList: Industry[] = []
+   emptyCompany: Company = {companyName: "", industry: ""}
   emptyUser: User = {
     name: "", firstName: "", username: "", password: "", repPassword: "", email: ""
   }
@@ -31,18 +44,20 @@ export class FormComponent {
 
   onContinueClickHandler() {
     if (this.page === 0) {
-      // getCompanyValidation(this.company)
+      const companyValidation = getCompanyValidation(this.company)
+      if (!companyValidation.name) {
+        alert(de.alerts.companyNameInvalid)
+      } else {
+        this.page++
+        if (this.page > 2) {
+          this.company = this.emptyCompany
+          this.user = this.emptyUser
+          this.page = 0
+          //TODO change to db handling
+          alert('saved')
+        }
+      }
     }
-    this.page++
-    if (this.page > 2) {
-      this.company = this.emptyCompany
-      this.user = this.emptyUser
-      this.page = 0
-      //TODO change to db handling
-      alert('saved')
-    }
-    console.log(this.user)
-    console.log(this.company)
   }
 
   onBackClickHandler() {

@@ -45,6 +45,7 @@ export type Language = {
     "firstName": string,
     "username": string,
     "password": string,
+    passwordHints: string,
     "repPassword": string,
     "email": string,
     "emailOptional": string,

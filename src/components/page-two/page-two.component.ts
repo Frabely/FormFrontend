@@ -6,7 +6,7 @@ import {
   isValidName,
   isValidPassword,
   isValidUsername
-} from "../../constants/validationFunctions";
+} from "../../functions/validationFunctions";
 
 @Component({
   selector: 'app-page-two',

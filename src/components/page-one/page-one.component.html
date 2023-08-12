@@ -10,9 +10,8 @@
   <div class="industry">
     <label class="label">{{de.labelCompany.industry}}</label>
     <select [(ngModel)]="company.industry" (change)="onIndustryChange($event)">
-      <option>{{industryList[0].name}}</option>
-      <option *ngFor="let industry of industryList.slice(1); let i = index" [value]="industryList[i+1].name">
-        {{ industry.name }}
+      <option *ngFor="let industry of industryList">
+        {{ industry?.name }}
       </option>
     </select>
   </div>

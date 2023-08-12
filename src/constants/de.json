@@ -13,6 +13,7 @@
     "firstName": "Vorname",
     "username": "Nutzername",
     "password": "Passwort",
+    "passwordHints": "Passwort (8 Zeichen, Groß- und Klein)",
     "repPassword": "Passwort wiederholen",
     "emailOptional": "E-Mail (optional)",
     "email": "E-Mail"

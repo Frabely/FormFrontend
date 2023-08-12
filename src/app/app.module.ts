@@ -8,6 +8,7 @@ import {PageOneComponent} from "../components/page-one/page-one.component";
 import {PageTwoComponent} from "../components/page-two/page-two.component";
 import {PageThreeComponent} from "../components/page-three/page-three.component";
 import {FinishFormLabelComponent} from "../components/finish-form-label/finish-form-label.component";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {FinishFormLabelComponent} from "../components/finish-form-label/finish-f
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

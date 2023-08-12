@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import de from "../../constants/de.json";
 import {Company, Industry, Language} from "../../constants/types";
-import {getCompanyValidation} from "../../constants/validationFunctions";
+import {getCompanyValidation} from "../../functions/validationFunctions";
 
 @Component({
   selector: 'app-page-one',
