@@ -1,17 +1,13 @@
 import {Company, CompanyValidation, User, UserValidation} from "../constants/types";
 
 export const isValidName = (name: string): boolean => {
-  return name !== '';
+  return name.trim() !== '';
 }
 
 export const isValidPassword = (password: string) => {
   //min 8 figures, big and small letters included
   const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   return passwordPattern.test(password);
-}
-
-export const isValidUsername = (username: string) => {
-  return true
 }
 
 export const isValidEmail = (email: string) => {
@@ -27,7 +23,7 @@ export const getUserValidation = (user: User): UserValidation => {
   const isFirstNameValid = isValidName(user.firstName)
   const isPasswordValid = isValidPassword(user.password)
   const isRepPasswordValid = isValidPassword(user.repPassword)
-  const isUsernameValid = isValidUsername(user.username)
+  const isUsernameValid = isValidName(user.username)
   const isEmailValid = isValidEmail(user.username)
 
   return {

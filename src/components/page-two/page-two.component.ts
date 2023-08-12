@@ -4,9 +4,9 @@ import {Language, User} from "../../constants/types";
 import {
   isValidEmail,
   isValidName,
-  isValidPassword,
-  isValidUsername
+  isValidPassword
 } from "../../functions/validationFunctions";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-page-two',
@@ -14,6 +14,9 @@ import {
   styleUrls: ['./page-two.component.css']
 })
 export class PageTwoComponent {
+
+  constructor(private apiService: ApiService) {
+  }
 
   protected readonly de: Language = de;
 
@@ -43,7 +46,13 @@ export class PageTwoComponent {
   onUserUsernameChangeHandler(event: any) {
     this.user = {...this.user, username: event.target.value}
     this.onUserChanged.emit(this.user)
-    this.isUsernameValid = isValidUsername(this.user.username)
+    if (isValidName(this.user.username)) {
+      this.apiService.isUsernameAvailable(this.user.username).subscribe((isAvailable: boolean) => {
+        this.isUsernameValid = isAvailable
+      })
+    }
+    else
+      this.isUsernameValid = false
   }
 
   onUserPasswordChangeHandler(event: any) {

@@ -10,15 +10,18 @@ import {Observable} from "rxjs";
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class FormComponent implements OnInit{
+export class FormComponent implements OnInit {
 
   fetchedIndustryList$?: Observable<Industry[]>
-  constructor(private apiService: ApiService) { }
+
+  constructor(private apiService: ApiService) {
+  }
 
   ngOnInit() {
     this.fetchedIndustryList$ = this.apiService.getIndustries()
     this.fetchedIndustryList$.subscribe((list: Industry[]) => {
       this.industryList = list
+      this.emptyCompany.industry = list[0].name
     })
   }
 
@@ -26,7 +29,7 @@ export class FormComponent implements OnInit{
   page: number = 0
 
   industryList: Industry[] = []
-   emptyCompany: Company = {companyName: "", industry: ""}
+  emptyCompany: Company = {companyName: "", industry: ""}
   emptyUser: User = {
     name: "", firstName: "", username: "", password: "", repPassword: "", email: ""
   }
@@ -48,16 +51,20 @@ export class FormComponent implements OnInit{
       if (!companyValidation.name) {
         alert(de.alerts.companyNameInvalid)
       } else {
+        console.log(this.company)
         this.page++
-        if (this.page > 2) {
-          this.company = this.emptyCompany
-          this.user = this.emptyUser
-          this.page = 0
-          //TODO change to db handling
-          alert('saved')
-        }
+      }
+    } else {
+      this.page++
+      if (this.page > 2) {
+        this.company = this.emptyCompany
+        this.user = this.emptyUser
+        this.page = 0
+        //TODO change to db handling
+        alert('saved')
       }
     }
+
   }
 
   onBackClickHandler() {
