@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import de from "../../constants/de.json";
-import {CheckBoxValidation, Company, Language, User, UserValidation} from "../../constants/types";
+import {CheckBoxValidation, Company, Language, User} from "../../constants/types";
 
 @Component({
   selector: 'app-page-three',

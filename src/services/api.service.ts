@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BASE_URL, CLIENT_API_ENDPOINT, COMPANY_API_ENDPOINT, INDUSTRY_API_ENDPOINT} from "../constants/constVars";
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
-import {DbCompany, DbUser, Industry, User} from "../constants/types";
+import {DbCompany, DbUser, Industry} from "../constants/types";
 
 @Injectable({
   providedIn: 'root'
