@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import de from "./../../constants/de.json"
 import {
   CheckBoxValidation,
-  Company,
+  Company, CompanyValidation,
   DbCompany,
   DbUser,
   Industry,
@@ -50,11 +50,13 @@ export class FormComponent implements OnInit {
 
   triedToFinishForm = false
 
-  userValidation?: UserValidation
+  userValidation: UserValidation = {}
   checkBoxValidation: CheckBoxValidation = {
     acceptTermsOfService: false,
     acceptTermsOfPrivacy: false
   }
+  companyValidation?: CompanyValidation
+
 
   async finishForm() {
     const dbUser: DbUser = {
@@ -69,7 +71,6 @@ export class FormComponent implements OnInit {
       name: this.company.companyName,
       industryId: this.company.industry.industryId
     }
-
     this.apiService.createUser(dbUser).subscribe()
     this.apiService.createCompany(dbCompany).subscribe()
 
@@ -92,16 +93,22 @@ export class FormComponent implements OnInit {
   }
 
   onContinueClickHandler() {
-    console.log(this.checkBoxValidation)
+    // this.companyValidation = {name: false}
+    // this.userValidation = {
+    //   name: false,
+    //   username: false,
+    //   repPassword: false,
+    //   password: false,
+    //   firstName: false,
+    //   passwordMatching: false
+    // }
     if (this.page === 0) {
-      const companyValidation = getCompanyValidation(this.company)
-      if (!companyValidation.name) {
+      this.companyValidation = getCompanyValidation(this.company)
+      if (!this.companyValidation.name) {
         alert(de.alerts.companyNameInvalid)
-      } else {
-        // this.page++
-      }
-    }
-    if (this.page === 1) {
+      } else
+        this.page++
+    } else if (this.page === 1) {
       let alertMsg: string = ''
       if (!this.userValidation?.name)
         alertMsg += de.alerts.invalidName + '\n'
@@ -119,9 +126,10 @@ export class FormComponent implements OnInit {
         alert(alertMsg)
       else
         this.page++
-    } else {
-      this.page++
     }
+    // else {
+    //   this.page++
+    // }
   }
 
   onFinishFormClickHandler() {
@@ -143,6 +151,19 @@ export class FormComponent implements OnInit {
   }
 
   onBackClickHandler() {
+    if (this.page === 1) {
+      this.companyValidation = {name: true}
+    } else if (this.page === 2) {
+      this.userValidation = {
+        name: true,
+        username: true,
+        repPassword: true,
+        password: true,
+        firstName: true,
+        passwordMatching: true,
+        email: true
+      }
+    }
     this.page--
   }
 }

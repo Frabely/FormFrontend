@@ -23,9 +23,10 @@ export class PageTwoComponent {
   @Output() onUserChanged = new EventEmitter<User>();
   @Output() isUserValid = new EventEmitter<UserValidation>
   @Input() user!: User
+  @Input() userValidation!: UserValidation
 
-  userValidation: UserValidation = {
-  }
+  // userValidation: UserValidation = {
+  // }
 
   onUserNameChangeHandler(event: any) {
     this.user = {...this.user, name: event.target.value}

@@ -25,6 +25,7 @@
   [ngModel]="user.password"
   (input)="onUserPasswordChangeHandler($event)"
   class="input"
+  type="password"
   [class.invalid]="userValidation.password === false"
   [class.valid]="userValidation.password"
   [placeholder]="de.labelUser.passwordHints"/>
@@ -32,6 +33,7 @@
   [ngModel]="user.repPassword"
   (input)="onUserRepPasswordChangeHandler($event)"
   class="input"
+  type="password"
   [class.invalid]="!(userValidation.repPassword && userValidation.passwordMatching)"
   [class.valid]="userValidation.repPassword && userValidation.passwordMatching"
   [placeholder]="de.labelUser.repPassword"/>
