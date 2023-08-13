@@ -13,28 +13,9 @@ export const isValidPassword = (password: string) => {
 export const isValidEmail = (email: string) => {
   if (!email || email === '')
     return true
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const emailPattern = /^[a-zA-Z0-9äöüÄÖÜß._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(email);
 }
 export const getCompanyValidation = (company: Company): CompanyValidation => {
     return {name: isValidName(company.companyName)}
-}
-
-export const getUserValidation = (user: User): UserValidation => {
-  const isNameValid = isValidName(user.name)
-  const isFirstNameValid = isValidName(user.firstName)
-  const isPasswordValid = isValidPassword(user.password)
-  const isRepPasswordValid = isValidPassword(user.repPassword)
-  const isUsernameValid = isValidName(user.username)
-  const isEmailValid = isValidEmail(user.username)
-
-  return {
-    name: isNameValid,
-    firstName: isFirstNameValid,
-    password: isPasswordValid,
-    repPassword: isRepPasswordValid,
-    passwordMatching: (user.password === user.repPassword),
-    username: isUsernameValid,
-    email: isEmailValid
-  }
 }

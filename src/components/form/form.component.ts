@@ -32,6 +32,7 @@ export class FormComponent implements OnInit {
       this.industryList = list
       this.emptyCompany.industry = list[0]
     })
+
   }
 
   de: Language = de
