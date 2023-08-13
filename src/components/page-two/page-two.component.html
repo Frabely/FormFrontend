@@ -34,7 +34,7 @@
   (input)="onUserRepPasswordChangeHandler($event)"
   class="input"
   type="password"
-  [class.invalid]="!(userValidation.repPassword && userValidation.passwordMatching)"
+  [class.invalid]="!(userValidation.repPassword && userValidation.passwordMatching) && userValidation.repPassword === false"
   [class.valid]="userValidation.repPassword && userValidation.passwordMatching"
   [placeholder]="de.labelUser.repPassword"/>
 <input

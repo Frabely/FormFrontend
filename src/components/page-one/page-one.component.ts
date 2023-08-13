@@ -17,8 +17,6 @@ export class PageOneComponent {
   @Input() industryList!: Industry[]
   @Input() companyValidation!: CompanyValidation
 
-  isNameValid?: boolean
-
   onCompanyChange(event: any) {
     this.company = {...this.company, companyName: event.target.value}
     this.onCompanyChanged.emit(this.company)
