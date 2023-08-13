@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import de from "../../constants/de.json";
-import {Company, Industry, Language} from "../../constants/types";
+import {Company, CompanyValidation, Industry, Language} from "../../constants/types";
 import {getCompanyValidation} from "../../functions/validationFunctions";
 
 @Component({
@@ -12,15 +12,18 @@ export class PageOneComponent {
   protected readonly de: Language = de;
 
   @Output() onCompanyChanged = new EventEmitter<Company>();
+  @Output() onCompanyValidationChanged = new EventEmitter<CompanyValidation>()
   @Input() company!: Company
   @Input() industryList!: Industry[]
+  @Input() companyValidation!: CompanyValidation
 
   isNameValid?: boolean
 
   onCompanyChange(event: any) {
     this.company = {...this.company, companyName: event.target.value}
     this.onCompanyChanged.emit(this.company)
-    this.isNameValid = getCompanyValidation(this.company).name
+    this.companyValidation.name = getCompanyValidation(this.company).name
+    this.onCompanyValidationChanged.emit(this.companyValidation)
   }
 
   onIndustryChange(event: any) {

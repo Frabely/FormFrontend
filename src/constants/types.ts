@@ -42,7 +42,7 @@ export type UserValidation = {
 }
 
 export type CompanyValidation = {
-  "name": boolean,
+  "name"?: boolean,
 }
 
 export type CheckBoxValidation = {

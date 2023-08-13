@@ -2,8 +2,8 @@
 <div class="mainContainer">
   <input
     class="marginBot"
-    [class.invalid]="isNameValid === false"
-    [class.valid]="isNameValid"
+    [class.invalid]="companyValidation.name === false"
+    [class.valid]="companyValidation.name"
     [ngModel]="company.companyName"
     (input)="onCompanyChange($event)"
     [placeholder]="de.labelCompany.companyName"/>

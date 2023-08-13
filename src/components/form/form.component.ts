@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
     acceptTermsOfService: false,
     acceptTermsOfPrivacy: false
   }
-  companyValidation?: CompanyValidation
+  companyValidation: CompanyValidation = {}
 
 
   async finishForm() {
@@ -78,6 +78,10 @@ export class FormComponent implements OnInit {
 
   onUserValidationChange(userValidation: UserValidation) {
     this.userValidation = userValidation
+  }
+
+  onCompanyValidationChange(companyValidation: CompanyValidation) {
+    this.companyValidation = companyValidation
   }
 
   onCompanyChanged(updatedCompany: Company) {
