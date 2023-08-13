@@ -24,7 +24,7 @@ export class PageOneComponent {
   }
 
   onIndustryChange(event: any) {
-    this.company.industry = event.target.value;
+    this.company.industry.name = event.target.value;
     this.onCompanyChanged.emit(this.company)
   }
 }

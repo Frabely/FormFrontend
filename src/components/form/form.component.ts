@@ -1,7 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import de from "./../../constants/de.json"
-import {Company, Industry, Language, User, UserValidation} from "../../constants/types";
-import {getCompanyValidation, getUserValidation} from "../../functions/validationFunctions";
+import {
+  CheckBoxValidation,
+  Company,
+  DbCompany,
+  DbUser,
+  Industry,
+  Language,
+  User,
+  UserValidation
+} from "../../constants/types";
+import {getCompanyValidation} from "../../functions/validationFunctions";
 import {ApiService} from "../../services/api.service";
 import {Observable} from "rxjs";
 
@@ -21,15 +30,16 @@ export class FormComponent implements OnInit {
     this.fetchedIndustryList$ = this.apiService.getIndustries()
     this.fetchedIndustryList$.subscribe((list: Industry[]) => {
       this.industryList = list
-      this.emptyCompany.industry = list[0].name
+      this.emptyCompany.industry = list[0]
     })
   }
 
   de: Language = de
-  page: number = 1
+  page: number = 0
 
   industryList: Industry[] = []
-  emptyCompany: Company = {companyName: "", industry: ""}
+  emptyIndustry: Industry = {industryId: -1, name: ''}
+  emptyCompany: Company = {companyName: "", industry: this.emptyIndustry}
   emptyUser: User = {
     name: "", firstName: "", username: "", password: "", repPassword: "", email: ""
   }
@@ -37,10 +47,35 @@ export class FormComponent implements OnInit {
   company: Company = this.emptyCompany
   user: User = this.emptyUser
 
+  triedToFinishForm = false
+
   userValidation?: UserValidation
+  checkBoxValidation: CheckBoxValidation = {
+    acceptTermsOfService: false,
+    acceptTermsOfPrivacy: false
+  }
+
+  async finishForm() {
+    const dbUser: DbUser = {
+      username: this.user.username,
+      name: this.user.name,
+      prevName: this.user.firstName,
+      password: this.user.password,
+      email: this.user.email
+    }
+    const dbCompany: DbCompany = {
+      id: 0,
+      name: this.company.companyName,
+      industryId: this.company.industry.industryId
+    }
+
+    this.apiService.createUser(dbUser).subscribe()
+    this.apiService.createCompany(dbCompany).subscribe()
+
+  }
 
   onUserValidationChange(userValidation: UserValidation) {
-      this.userValidation = userValidation
+    this.userValidation = userValidation
   }
 
   onCompanyChanged(updatedCompany: Company) {
@@ -51,7 +86,12 @@ export class FormComponent implements OnInit {
     this.user = updatedUser
   }
 
+  onCheckBoxChanged(updatedCheckboxes: CheckBoxValidation) {
+    this.checkBoxValidation = updatedCheckboxes
+  }
+
   onContinueClickHandler() {
+    console.log(this.checkBoxValidation)
     if (this.page === 0) {
       const companyValidation = getCompanyValidation(this.company)
       if (!companyValidation.name) {
@@ -80,19 +120,28 @@ export class FormComponent implements OnInit {
         this.page++
     } else {
       this.page++
-      if (this.page > 2) {
+    }
+  }
+
+  onFinishFormClickHandler() {
+    this.triedToFinishForm = true
+    if (!this.checkBoxValidation.acceptTermsOfService || !this.checkBoxValidation.acceptTermsOfPrivacy) {
+      alert('checkboxes not checked')
+    } else {
+      this.finishForm().then(() => {
         this.company = this.emptyCompany
         this.user = this.emptyUser
+        this.checkBoxValidation = {acceptTermsOfPrivacy: false, acceptTermsOfService: false}
+        this.triedToFinishForm = false
         this.page = 0
-        //TODO change to db handling
         alert('saved')
-      }
+      }).catch((error) => {
+        console.log(error.message)
+      })
     }
   }
 
   onBackClickHandler() {
     this.page--
   }
-
-  protected readonly getUserValidation = getUserValidation;
 }

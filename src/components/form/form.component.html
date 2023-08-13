@@ -1,10 +1,11 @@
 <div class="formCard">
   <div class="formPage" *ngIf="page == 0">
-    <app-page-one (onCompanyChanged)="onCompanyChanged($event)" [company]="company" [industryList]="industryList ? industryList : []"/>
+    <app-page-one (onCompanyChanged)="onCompanyChanged($event)" [company]="company"
+                  [industryList]="industryList ? industryList : []"/>
     <div class="buttonContainer">
-    <button
-      (click)="onContinueClickHandler()"
-      class="button">{{de.label.continue}}</button>
+      <button
+        (click)="onContinueClickHandler()"
+        class="button">{{de.label.continue}}</button>
     </div>
   </div>
   <div class="formPage" *ngIf="page == 1">
@@ -19,13 +20,18 @@
     </div>
   </div>
   <div class="formPage" *ngIf="page == 2">
-    <app-page-three [user]="user" [company]="company"/>
+    <app-page-three
+      [triedToFinishForm]="triedToFinishForm"
+      [user]="user"
+      [company]="company"
+      [checkBoxValidation]="checkBoxValidation"
+      (onCheckboxChanged)="onCheckBoxChanged($event)"/>
     <div class="buttonContainer">
       <button
         (click)="onBackClickHandler()"
         class="button">{{de.label.back}}</button>
       <button
-        (click)="onContinueClickHandler()"
+        (click)="onFinishFormClickHandler()"
         class="button">{{de.label.finishForm}}</button>
     </div>
   </div>

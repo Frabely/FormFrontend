@@ -9,7 +9,7 @@
     [placeholder]="de.labelCompany.companyName"/>
   <div class="industry">
     <label class="label">{{de.labelCompany.industry}}</label>
-    <select [(ngModel)]="company.industry" (change)="onIndustryChange($event)">
+    <select [(ngModel)]="company.industry.name" (change)="onIndustryChange($event)">
       <option *ngFor="let industry of industryList" [value]="industry.name">
         {{ industry?.name }}
       </option>

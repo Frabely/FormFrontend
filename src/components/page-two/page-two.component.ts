@@ -66,7 +66,6 @@ export class PageTwoComponent {
     this.user = {...this.user, repPassword: event.target.value}
     this.onUserChanged.emit(this.user)
     this.userValidation.repPassword = isValidPassword(this.user.repPassword)
-    console.log(this.user.password === this.user.repPassword)
     this.userValidation.passwordMatching = this.user.password === this.user.repPassword
     this.isUserValid.emit(this.userValidation)
   }
@@ -77,6 +76,4 @@ export class PageTwoComponent {
     this.userValidation.email = isValidEmail(this.user.email)
     this.isUserValid.emit(this.userValidation)
   }
-
-  protected readonly isValidPassword = isValidPassword;
 }

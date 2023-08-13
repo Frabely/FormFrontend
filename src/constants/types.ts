@@ -1,10 +1,11 @@
 export type Industry = {
+  industryId: number
   name: string
 }
 
 export type Company = {
   "companyName": string,
-  "industry": string
+  "industry": Industry
 }
 
 export type User = {
@@ -14,6 +15,20 @@ export type User = {
   "password": string,
   "repPassword": string,
   "email": string
+}
+
+export type DbUser = {
+  "username": string,
+  "name": string,
+  "prevName": string,
+  "password": string,
+  "email": string
+}
+
+export type DbCompany = {
+  id: number,
+  "name": string,
+  "industryId": number
 }
 
 export type UserValidation = {
@@ -28,6 +43,11 @@ export type UserValidation = {
 
 export type CompanyValidation = {
   "name": boolean,
+}
+
+export type CheckBoxValidation = {
+  acceptTermsOfService: boolean,
+  acceptTermsOfPrivacy: boolean
 }
 
 export type Language = {
