@@ -1,4 +1,4 @@
-import {Company, CompanyValidation, User, UserValidation} from "../constants/types";
+import {Company, CompanyValidation} from "../constants/types";
 
 export const isValidName = (name: string): boolean => {
   return name.trim() !== '';
