@@ -6,11 +6,13 @@ export const isValidName = (name: string): boolean => {
 
 export const isValidPassword = (password: string) => {
   //min 8 figures, big and small letters included
-  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   return passwordPattern.test(password);
 }
 
 export const isValidEmail = (email: string) => {
+  if (!email || email === '')
+    return true
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailPattern.test(email);
 }

@@ -17,13 +17,13 @@ export type User = {
 }
 
 export type UserValidation = {
-  "name": boolean,
-  "firstName": boolean,
-  "username": boolean,
-  "password": boolean,
-  "repPassword": boolean,
-  "passwordMatching": boolean,
-  "email": boolean
+  "name"?: boolean,
+  "firstName"?: boolean,
+  "username"?: boolean,
+  "password"?: boolean,
+  "repPassword"?: boolean,
+  "passwordMatching"?: boolean,
+  "email"?: boolean
 }
 
 export type CompanyValidation = {

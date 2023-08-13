@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import de from "../../constants/de.json";
-import {Language, User} from "../../constants/types";
+import {Language, User, UserValidation} from "../../constants/types";
 import {
   isValidEmail,
   isValidName,
@@ -21,26 +21,24 @@ export class PageTwoComponent {
   protected readonly de: Language = de;
 
   @Output() onUserChanged = new EventEmitter<User>();
+  @Output() isUserValid = new EventEmitter<UserValidation>
   @Input() user!: User
 
-  isNameValid?: boolean
-  isFirstNameValid?: boolean
-  isUsernameValid?: boolean
-  isPasswordValid?: boolean
-  isRepPasswordValid?: boolean
-  isMatchingPasswordValid?: boolean
-  isEmailValid?: boolean
+  userValidation: UserValidation = {
+  }
 
   onUserNameChangeHandler(event: any) {
     this.user = {...this.user, name: event.target.value}
     this.onUserChanged.emit(this.user)
-    this.isNameValid = isValidName(this.user.name)
+    this.userValidation.name = isValidName(this.user.name)
+    this.isUserValid.emit(this.userValidation)
   }
 
   onUserFirstNameChangeHandler(event: any) {
     this.user = {...this.user, firstName: event.target.value}
     this.onUserChanged.emit(this.user)
-    this.isFirstNameValid = isValidName(this.user.firstName)
+    this.userValidation.firstName = isValidName(this.user.firstName)
+    this.isUserValid.emit(this.userValidation)
   }
 
   onUserUsernameChangeHandler(event: any) {
@@ -48,28 +46,37 @@ export class PageTwoComponent {
     this.onUserChanged.emit(this.user)
     if (isValidName(this.user.username)) {
       this.apiService.isUsernameAvailable(this.user.username).subscribe((isAvailable: boolean) => {
-        this.isUsernameValid = isAvailable
+        this.userValidation.username = isAvailable
       })
     }
     else
-      this.isUsernameValid = false
+      this.userValidation.username = false
+    this.isUserValid.emit(this.userValidation)
   }
 
   onUserPasswordChangeHandler(event: any) {
     this.user = {...this.user, password: event.target.value}
     this.onUserChanged.emit(this.user)
-    this.isPasswordValid = isValidPassword(this.user.password)
+    this.userValidation.password = isValidPassword(this.user.password)
+    this.userValidation.passwordMatching = this.user.password === this.user.repPassword
+    this.isUserValid.emit(this.userValidation)
   }
 
   onUserRepPasswordChangeHandler(event: any) {
     this.user = {...this.user, repPassword: event.target.value}
     this.onUserChanged.emit(this.user)
-    this.isRepPasswordValid = isValidPassword(this.user.repPassword)
+    this.userValidation.repPassword = isValidPassword(this.user.repPassword)
+    console.log(this.user.password === this.user.repPassword)
+    this.userValidation.passwordMatching = this.user.password === this.user.repPassword
+    this.isUserValid.emit(this.userValidation)
   }
 
   onUserEmailChangeHandler(event: any) {
     this.user = {...this.user, email: event.target.value}
     this.onUserChanged.emit(this.user)
-    this.isEmailValid = isValidEmail(this.user.email)
+    this.userValidation.email = isValidEmail(this.user.email)
+    this.isUserValid.emit(this.userValidation)
   }
+
+  protected readonly isValidPassword = isValidPassword;
 }

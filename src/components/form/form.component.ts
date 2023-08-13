@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import de from "./../../constants/de.json"
-import {Company, Industry, Language, User} from "../../constants/types";
-import {getCompanyValidation} from "../../functions/validationFunctions";
+import {Company, Industry, Language, User, UserValidation} from "../../constants/types";
+import {getCompanyValidation, getUserValidation} from "../../functions/validationFunctions";
 import {ApiService} from "../../services/api.service";
 import {Observable} from "rxjs";
 
@@ -26,7 +26,7 @@ export class FormComponent implements OnInit {
   }
 
   de: Language = de
-  page: number = 0
+  page: number = 1
 
   industryList: Industry[] = []
   emptyCompany: Company = {companyName: "", industry: ""}
@@ -36,6 +36,12 @@ export class FormComponent implements OnInit {
 
   company: Company = this.emptyCompany
   user: User = this.emptyUser
+
+  userValidation?: UserValidation
+
+  onUserValidationChange(userValidation: UserValidation) {
+      this.userValidation = userValidation
+  }
 
   onCompanyChanged(updatedCompany: Company) {
     this.company = updatedCompany
@@ -51,9 +57,27 @@ export class FormComponent implements OnInit {
       if (!companyValidation.name) {
         alert(de.alerts.companyNameInvalid)
       } else {
-        console.log(this.company)
-        this.page++
+        // this.page++
       }
+    }
+    if (this.page === 1) {
+      let alertMsg: string = ''
+      if (!this.userValidation?.name)
+        alertMsg += de.alerts.invalidName + '\n'
+      if (!this.userValidation?.firstName)
+        alertMsg += de.alerts.invalidFirstName + '\n'
+      if (!this.userValidation?.username)
+        alertMsg += de.alerts.invalidUsername + '\n'
+      if (!this.userValidation?.password)
+        alertMsg += de.alerts.invalidPassword + '\n'
+      if (!this.userValidation?.repPassword || !this.userValidation?.passwordMatching)
+        alertMsg += de.alerts.passwordsNotMatching + '\n'
+      if (this.userValidation?.email !== undefined && !this.userValidation?.email)
+        alertMsg += de.alerts.invalidEmail + '\n'
+      if (alertMsg !== '')
+        alert(alertMsg)
+      else
+        this.page++
     } else {
       this.page++
       if (this.page > 2) {
@@ -64,10 +88,11 @@ export class FormComponent implements OnInit {
         alert('saved')
       }
     }
-
   }
 
   onBackClickHandler() {
     this.page--
   }
+
+  protected readonly getUserValidation = getUserValidation;
 }

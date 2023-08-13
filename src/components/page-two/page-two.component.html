@@ -4,44 +4,42 @@
   [ngModel]="user.name"
   (input)="onUserNameChangeHandler($event)"
   class="input"
-  [class.invalid]="isNameValid === false"
-  [class.valid]="isNameValid"
+  [class.invalid]="userValidation.name === false"
+  [class.valid]="userValidation.name"
   [placeholder]="de.labelUser.name"/>
 <input
   [ngModel]="user.firstName"
   (input)="onUserFirstNameChangeHandler($event)"
   class="input"
-  [class.invalid]="isFirstNameValid === false"
-  [class.valid]="isFirstNameValid"
+  [class.invalid]="userValidation.firstName === false"
+  [class.valid]="userValidation.firstName"
   [placeholder]="de.labelUser.firstName"/>
 <input
   [ngModel]="user.username"
   (input)="onUserUsernameChangeHandler($event)"
   class="input"
-  [class.invalid]="isUsernameValid === false"
-  [class.valid]="isUsernameValid"
+  [class.invalid]="userValidation.username === false"
+  [class.valid]="userValidation.username"
   [placeholder]="de.labelUser.username"/>
 <input
-  type="password"
   [ngModel]="user.password"
   (input)="onUserPasswordChangeHandler($event)"
   class="input"
-  [class.invalid]="isPasswordValid === false"
-  [class.valid]="isPasswordValid"
+  [class.invalid]="userValidation.password === false"
+  [class.valid]="userValidation.password"
   [placeholder]="de.labelUser.passwordHints"/>
 <input
-  type="password"
   [ngModel]="user.repPassword"
   (input)="onUserRepPasswordChangeHandler($event)"
   class="input"
-  [class.invalid]="isRepPasswordValid === false"
-  [class.valid]="isRepPasswordValid"
+  [class.invalid]="!(userValidation.repPassword && userValidation.passwordMatching)"
+  [class.valid]="userValidation.repPassword && userValidation.passwordMatching"
   [placeholder]="de.labelUser.repPassword"/>
 <input
   [ngModel]="user.email"
   (input)="onUserEmailChangeHandler($event)"
   class="input"
-  [class.invalid]="isEmailValid === false"
-  [class.valid]="isEmailValid"
+  [class.invalid]="userValidation.email === false"
+  [class.valid]="userValidation.email"
   [placeholder]="de.labelUser.emailOptional"/>
 </div>

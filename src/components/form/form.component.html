@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="formPage" *ngIf="page == 1">
-    <app-page-two (onUserChanged)="onUserChanged($event)" [user]="user"/>
+    <app-page-two (onUserChanged)="onUserChanged($event)" (isUserValid)="onUserValidationChange($event)" [user]="user"/>
     <div class="buttonContainer">
       <button
         (click)="onBackClickHandler()"
