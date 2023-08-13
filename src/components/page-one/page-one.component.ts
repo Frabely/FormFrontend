@@ -27,7 +27,7 @@ export class PageOneComponent {
   onIndustryChange(event: any) {
     const filterResult = this.industryList.filter((industry: Industry) => industry.name === event.target.value)
     if (filterResult.length > 0)
-      this.company.industry = filterResult[0];
+      this.company= {...this.company, industry: filterResult[0]}
     this.onCompanyChanged.emit(this.company)
   }
 }

@@ -97,15 +97,6 @@ export class FormComponent implements OnInit {
   }
 
   onContinueClickHandler() {
-    // this.companyValidation = {name: false}
-    // this.userValidation = {
-    //   name: false,
-    //   username: false,
-    //   repPassword: false,
-    //   password: false,
-    //   firstName: false,
-    //   passwordMatching: false
-    // }
     if (this.page === 0) {
       this.companyValidation = getCompanyValidation(this.company)
       if (!this.companyValidation.name) {
@@ -114,40 +105,50 @@ export class FormComponent implements OnInit {
         this.page++
     } else if (this.page === 1) {
       let alertMsg: string = ''
-      if (!this.userValidation?.name)
+      if (!this.userValidation?.name) {
         alertMsg += de.alerts.invalidName + '\n'
-      if (!this.userValidation?.firstName)
+        this.userValidation.name = false
+      }
+      if (!this.userValidation?.firstName) {
         alertMsg += de.alerts.invalidFirstName + '\n'
-      if (!this.userValidation?.username)
+        this.userValidation.firstName = false
+      }
+      if (!this.userValidation?.username) {
         alertMsg += de.alerts.invalidUsername + '\n'
-      if (!this.userValidation?.password)
+        this.userValidation.username = false
+      }
+      if (!this.userValidation?.password) {
         alertMsg += de.alerts.invalidPassword + '\n'
-      if (!this.userValidation?.repPassword || !this.userValidation?.passwordMatching)
+        this.userValidation.password = false
+      }
+      if (!this.userValidation?.repPassword || !this.userValidation?.passwordMatching) {
         alertMsg += de.alerts.passwordsNotMatching + '\n'
+        this.userValidation.passwordMatching = false
+        this.userValidation.repPassword = false
+      }
       if (this.userValidation?.email !== undefined && !this.userValidation?.email)
         alertMsg += de.alerts.invalidEmail + '\n'
-      if (alertMsg !== '')
+      if (alertMsg !== '') {
         alert(alertMsg)
-      else
+      } else
         this.page++
     }
-    // else {
-    //   this.page++
-    // }
   }
 
   onFinishFormClickHandler() {
     this.triedToFinishForm = true
     if (!this.checkBoxValidation.acceptTermsOfService || !this.checkBoxValidation.acceptTermsOfPrivacy) {
-      alert('checkboxes not checked')
+      alert(de.alerts.checkboxesNotChecked)
     } else {
       this.finishForm().then(() => {
         this.company = this.emptyCompany
         this.user = this.emptyUser
         this.checkBoxValidation = {acceptTermsOfPrivacy: false, acceptTermsOfService: false}
+        this.companyValidation = {}
+        this.userValidation = {}
         this.triedToFinishForm = false
         this.page = 0
-        alert('saved')
+        alert(de.alerts.userAndCompanyCreated)
       }).catch((error) => {
         console.log(error.message)
       })

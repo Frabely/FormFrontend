@@ -32,6 +32,8 @@
     "invalidUsername": "Nutzername unzulässig oder vergeben.",
     "invalidPassword": "Passwort muss aus mindestens 8 Zeichen bestehen sowie Groß- und Kleinbuchstaben enthalten.",
     "passwordsNotMatching": "Passwörter stimmen nicht überein.",
-    "invalidEmail": "E-Mail Format unzulässig."
+    "invalidEmail": "E-Mail Format unzulässig.",
+    "checkboxesNotChecked": "AGB's oder Datenschutzerklärung nicht akzeptiert.",
+    "userAndCompanyCreated": "Firma und Nutzer erstellt."
   }
 }

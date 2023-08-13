@@ -79,5 +79,13 @@ export type Language = {
   },
   "alerts": {
     "companyNameInvalid": string,
+    "invalidName": string,
+    "invalidFirstName": string,
+    "invalidUsername": string,
+    "invalidPassword": string,
+    "passwordsNotMatching": string,
+    "invalidEmail": string,
+    "checkboxesNotChecked": string,
+    "userAndCompanyCreated": string
   }
 }
