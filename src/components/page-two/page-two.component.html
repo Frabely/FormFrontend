@@ -1,47 +1,47 @@
 <div class="mainContainer">
-<h1>{{de.headlines.dataUser}}</h1>
-<input
-  [ngModel]="user.name"
-  (input)="onUserNameChangeHandler($event)"
-  class="input"
-  [class.invalid]="userValidation.name === false"
-  [class.valid]="userValidation.name"
-  [placeholder]="de.labelUser.name"/>
-<input
-  [ngModel]="user.firstName"
-  (input)="onUserFirstNameChangeHandler($event)"
-  class="input"
-  [class.invalid]="userValidation.firstName === false"
-  [class.valid]="userValidation.firstName"
-  [placeholder]="de.labelUser.firstName"/>
-<input
-  [ngModel]="user.username"
-  (input)="onUserUsernameChangeHandler($event)"
-  class="input"
-  [class.invalid]="userValidation.username === false"
-  [class.valid]="userValidation.username"
-  [placeholder]="de.labelUser.username"/>
-<input
-  [ngModel]="user.password"
-  (input)="onUserPasswordChangeHandler($event)"
-  class="input"
-  type="password"
-  [class.invalid]="userValidation.password === false"
-  [class.valid]="userValidation.password"
-  [placeholder]="de.labelUser.passwordHints"/>
-<input
-  [ngModel]="user.repPassword"
-  (input)="onUserRepPasswordChangeHandler($event)"
-  class="input"
-  type="password"
-  [class.invalid]="!(userValidation.repPassword && userValidation.passwordMatching) && userValidation.repPassword === false"
-  [class.valid]="userValidation.repPassword && userValidation.passwordMatching"
-  [placeholder]="de.labelUser.repPassword"/>
-<input
-  [ngModel]="user.email"
-  (input)="onUserEmailChangeHandler($event)"
-  class="input"
-  [class.invalid]="userValidation.email === false"
-  [class.valid]="userValidation.email"
-  [placeholder]="de.labelUser.emailOptional"/>
+  <h1>{{de.headlines.dataUser}}</h1>
+  <input
+    [ngModel]="user.name"
+    (input)="onUserNameChangeHandler($event)"
+    class="input"
+    [class.invalid]="userValidation.name === false"
+    [class.valid]="userValidation.name"
+    [placeholder]="de.labelUser.name"/>
+  <input
+    [ngModel]="user.firstName"
+    (input)="onUserFirstNameChangeHandler($event)"
+    class="input"
+    [class.invalid]="userValidation.firstName === false"
+    [class.valid]="userValidation.firstName"
+    [placeholder]="de.labelUser.firstName"/>
+  <input
+    [ngModel]="user.username"
+    (input)="onUserUsernameChangeHandler($event)"
+    class="input"
+    [class.invalid]="userValidation.username === false"
+    [class.valid]="userValidation.username"
+    [placeholder]="de.labelUser.username"/>
+  <input
+    [ngModel]="user.password"
+    (input)="onUserPasswordChangeHandler($event)"
+    class="input"
+    type="password"
+    [class.invalid]="userValidation.password === false"
+    [class.valid]="userValidation.password"
+    [placeholder]="de.labelUser.passwordHints"/>
+  <input
+    [ngModel]="user.repPassword"
+    (input)="onUserRepPasswordChangeHandler($event)"
+    class="input"
+    type="password"
+    [class.invalid]="!(userValidation.repPassword && userValidation.passwordMatching) && userValidation.repPassword === false"
+    [class.valid]="userValidation.repPassword && userValidation.passwordMatching"
+    [placeholder]="de.labelUser.repPassword"/>
+  <input
+    [ngModel]="user.email"
+    (input)="onUserEmailChangeHandler($event)"
+    class="input"
+    [class.invalid]="userValidation.email === false"
+    [class.valid]="userValidation.email"
+    [placeholder]="de.labelUser.emailOptional"/>
 </div>
